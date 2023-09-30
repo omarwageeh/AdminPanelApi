@@ -11,6 +11,7 @@ namespace AmazonClone.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Microsoft.AspNetCore.Cors.EnableCors()]
     public class AdminController : ControllerBase
     {
         private readonly IConfiguration _config;
@@ -46,7 +47,7 @@ namespace AmazonClone.Api.Controllers
                 Email = register.Email,
                 JobTitle = register.JobTitle,
             };
-            var created = await _userService.Register(admin, register.password);
+            var created = await _userService.Register(admin, register.Password);
             if (created)
             {
                 return Ok();

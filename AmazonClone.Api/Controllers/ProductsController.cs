@@ -8,6 +8,7 @@ namespace AmazonClone.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Microsoft.AspNetCore.Cors.EnableCors()]
     [Authorize]
     public class ProductsController : ControllerBase
     {

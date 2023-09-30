@@ -31,10 +31,16 @@ namespace AmazonClone.Service
             }
             
         }
-        public async Task<Order?> GetAllOrderByCustomerId(string customerId)
+        public async Task<IEnumerable<Order>> GetAllOrdersByCustomerId(string customerId)
         {
-            var order = await _unitOfWork.OrderRepository.GetAllWithInclude(o => o.Customer.Id == Guid.Parse(customerId), "Customer");
-            return order.FirstOrDefault();
+            var orders = await _unitOfWork.OrderRepository.GetAllWithInclude(o => o.Customer.Id == Guid.Parse(customerId), "Customer");
+            return orders;
+
+        }
+        public async Task<IEnumerable<Order>> GetAllOrders()
+        {
+            var orders = await _unitOfWork.OrderRepository.GetAllWithInclude(o => !o.IsDeleted, "Customer");
+            return orders;
 
         }
         public async Task UpdateOrder(Order order)

@@ -80,7 +80,7 @@ namespace AmazonClone.Test.ControllerTests
             var controller = new AdminController(configMock.Object, userServiceMock.Object);
 
             // Act
-            var result = await controller.Register(new RegisterModel() { Email="email@gmail.com", FullName="fullname", isActive=false, JobTitle="title", password="pass@1234" }) as OkResult;
+            var result = await controller.Register(new RegisterModel() { Email="email@gmail.com", FullName="fullname", IsActive=false, JobTitle="title", Password="pass@1234" }) as OkResult;
 
             // Assert
             Assert.NotNull(result);
@@ -106,7 +106,7 @@ namespace AmazonClone.Test.ControllerTests
             var controller = new AdminController(configMock.Object, userServiceMock.Object);
 
             // Act
-            var result = await controller.Register(new RegisterModel() { Email="email@gmail.com", FullName="fullname", isActive=false, JobTitle="title", password="pass@1234" }) as BadRequestResult;
+            var result = await controller.Register(new RegisterModel() { Email="email@gmail.com", FullName="fullname", IsActive=false, JobTitle="title", Password="pass@1234" }) as BadRequestResult;
 
             // Assert
             Assert.NotNull(result);
