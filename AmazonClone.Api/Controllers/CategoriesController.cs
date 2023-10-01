@@ -2,6 +2,7 @@
 using AmazonClone.Model;
 using AmazonClone.Service;
 using Microsoft.AspNetCore.Authorization;
+using AmazonClone.Dto;
 
 namespace AmazonClone.Api.Controllers
 {
@@ -41,16 +42,16 @@ namespace AmazonClone.Api.Controllers
             return category.FirstOrDefault()!;
         }
 
-        // PUT: api/Categories/5
+        // POST: api/Categories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(Guid id, Category category)
+        [HttpPost("{id}")]
+        public async Task<IActionResult> PutCategory(Guid id, CategoryDto category)
         {
             if (id != category.Id)
             {
                 return BadRequest();
             }
-            await _categoryService.UpdateCategory(category);
+            await _categoryService.UpdateCategory(new Category { Id = category.Id, Name = category.Name });
 
             return NoContent();
         }

@@ -12,5 +12,9 @@ namespace AmazonClone.Model
             Name = name;
             Products = new HashSet<Product>();
         }
+        public Category() 
+        {
+            Products = new HashSet<Product>();
+        }
     }
 }
