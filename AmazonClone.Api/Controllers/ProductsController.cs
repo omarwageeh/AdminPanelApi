@@ -3,6 +3,7 @@ using AmazonClone.Model;
 using AmazonClone.Service;
 using Microsoft.AspNetCore.Authorization;
 using AmazonClone.Dto;
+using AmazonClone.Api.Models;
 
 namespace AmazonClone.Api.Controllers
 {
@@ -73,14 +74,14 @@ namespace AmazonClone.Api.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{id}")]
-        public async Task<IActionResult> PutProduct(Guid id, Product product)
+        public async Task<IActionResult> PutProduct(Guid id, ProductUpdateModel product)
         {
             if (id != product.Id)
             {
                 return BadRequest();
             }
 
-            await _productService.UpdateProduct(product);
+            await _productService.UpdateProduct(new Product { Id = product.Id, CategoryId=product.CategoryId, NameAr = product.NameAr, NameEn = product.NameEn, StockQuantity = product.StockQuantity, UnitPrice = product.UnitPrice});
 
             return NoContent();
         }
